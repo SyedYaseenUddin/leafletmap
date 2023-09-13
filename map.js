@@ -91,10 +91,14 @@ class LeafletMap {
 
   removeMarkers() {
     if (this.markers && this.markerCluster) {
-      this.markerCluster.removeLayer(this.markers);
-      this.map.removeLayer(this.markerCluster);
-      // this.markers = null;
-      // this.markerCluster = null;
+      this.map.removeLayer(this.map._layers[this.markerCluster._leaflet_id])
+      this.markers.map(layer => {
+        this.map.removeLayer(this.map._layers[layer._leaflet_id])
+      });
+      // this.markerCluster.removeLayer(this.markers);
+      // this.map.removeLayer(this.markerCluster);
+      this.markers = null;
+      this.markerCluster = null;
     }
   }
 
