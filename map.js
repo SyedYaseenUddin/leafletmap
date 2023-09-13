@@ -66,8 +66,11 @@ class LeafletMap {
       //   this.map.removeLayer(this.heatLayer);
       // }, 1000)
       this.map.eachLayer((layer) => {
-        if (layer._canvas) {
-          debugger;
+        if (
+          layer._canvas &&
+          layer._canvas.classList.contains(this.HEAT_LAYER_CLASS)
+        ) {
+          this.map.removeLayer(layer);
         }
       });
       // this.heatLayer = null;
