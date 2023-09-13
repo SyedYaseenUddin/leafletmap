@@ -32,7 +32,6 @@ class LeafletMap {
 
   onMapZoom() {
     this.map.on('zoomend', () => {
-      debugger;
       this.updateMapLayers();
     });
   }
