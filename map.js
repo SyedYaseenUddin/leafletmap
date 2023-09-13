@@ -27,6 +27,14 @@ class LeafletMap {
     ];
     this.drawMap();
     this.updateMapLayers();
+    this.onMapZoom();
+  }
+
+  onMapZoom() {
+    this.map.on('zoomend', () => {
+      debugger;
+      this.updateMapLayers();
+    });
   }
 
   drawMap() {
@@ -82,7 +90,7 @@ class LeafletMap {
 
   updateMapLayers() {
     const zoomLevel = this.map.getZoom();
-    if (zoomLevel < 3) {
+    if (zoomLevel > 9) {
       this.removeHeatLayer();
       this.drawMarker();
     } else {
