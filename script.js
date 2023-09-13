@@ -1,3 +1,3 @@
-$(document).ready(function(){
-  const leaflet = new LeafletMap('map');
-});
+// $(document).ready(function(){
+const leaflet = new LeafletMap('map');
+// });

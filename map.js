@@ -1,5 +1,6 @@
 class LeafletMap {
   constructor(elementId) {
+    this.HEAT_LAYER_CLASS = 'leaflet-heatmap-layer';
     this.map = null;
     this.heatLayer = null;
     this.markers = null;
@@ -61,8 +62,15 @@ class LeafletMap {
 
   removeHeatLayer() {
     if (this.heatLayer) {
-      this.map.removeLayer(this.heatLayer);
-      this.heatLayer = null;
+      // setTimeout(() => {
+      //   this.map.removeLayer(this.heatLayer);
+      // }, 1000)
+      this.map.eachLayer((layer) => {
+        if (layer._canvas) {
+          debugger;
+        }
+      });
+      // this.heatLayer = null;
     }
   }
 
@@ -82,19 +90,19 @@ class LeafletMap {
     if (this.markers && this.markerCluster) {
       this.markerCluster.removeLayer(this.markers);
       this.map.removeLayer(this.markerCluster);
-      this.markers = null;
-      this.markerCluster = null;
+      // this.markers = null;
+      // this.markerCluster = null;
     }
   }
 
   updateMapLayers() {
     const zoomLevel = this.map.getZoom();
     if (zoomLevel > 9) {
-      this.removeHeatLayer();
       this.drawMarker();
+      this.removeHeatLayer();
     } else {
-      this.removeMarkers();
       this.drawHeatLayer();
+      this.removeMarkers();
     }
   }
 }
